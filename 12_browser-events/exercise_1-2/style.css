@@ -1,0 +1,31 @@
+.main {
+  max-width: 1110px;
+  margin: 0 auto;
+  padding: 15px 15px;
+}
+/*Задание 1*/
+.dropdown {
+  top: 50px;
+}
+
+.btn {
+  width: 195px;
+}
+
+.dropdown-menu {
+  left: auto;
+}
+
+.block {
+  display: block;
+}
+
+/*Задание 2*/
+.mt-5 {
+  margin-top: 200px !important;
+}
+
+#myForm {
+  margin-bottom: 20px;
+}
+

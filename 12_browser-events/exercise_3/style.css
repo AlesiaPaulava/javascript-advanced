@@ -1,0 +1,60 @@
+body {
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  background-color: #222;
+  font-family: Arial, sans-serif;
+}
+
+main {
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.card {
+  max-width: 1440px;
+  padding: 20px;
+  background-color: #333;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.card h2 {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.card p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Кнопка "Наверх" */
+#scrollBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #ff4444;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: none;
+}
+
