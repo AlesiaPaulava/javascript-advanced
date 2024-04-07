@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <script type="module">
+    import { createTodoApp, createButton } from './todo-app/view.js';
+
+    let apiModule = './todo-app/api.js';
+    let storageType = 'server';
+
+    async function switchStorage() {
+      if (storageType === 'server') {
+        apiModule = './todo-app/api.js';
+        storageType = 'local';
+      } else {
+        apiModule = './todo-app/localStorage.js';
+        storageType = 'server';
+      }
+
+    }
+
+    import(apiModule).then(module => {
+      const {
+        getTodoList,
+        createTodoItem,
+        switchTodoItemDone,
+        deleteTodoItem
+      } = module;
+
+      (async () => {
+        const owner = 'my';
+        const todoItemList = await getTodoList(owner);
+        createTodoApp(document.getElementById('todo-app'), {
+          title: 'Мои дела',
+          owner,
+          todoItemList,
+          onCreateFormSubmit: createTodoItem,
+          onDoneClick: switchTodoItemDone,
+          onDeleteClick: deleteTodoItem,
+        });
+        createButton(document.getElementById('button'), switchStorage);
+      })();
+    });
+
+    // // Функция для переключения хранилища и перезагрузки приложения
+    // async function toggleStorage() {
+    //   const currentStorage = localStorage.getItem('storageType');
+    //   const newStorage = currentStorage === 'local' ? 'server' : 'local';
+    //   localStorage.setItem('storageType', newStorage);
+    //   location.reload();
+    // }
+
+    // // Получение текущего типа хранилища, по умолчанию - локальное
+    // const currentStorage = localStorage.getItem('storageType') || 'local';
+
+    // // Динамический импорт функций в зависимости от типа хранилища
+    // let getTodoList, createTodoItem, switchTodoItemDone, deleteTodoItem;
+
+    // if (currentStorage === 'local') {
+    //   ({
+    //     getTodoList,
+    //     createTodoItem,
+    //     switchTodoItemDone,
+    //     deleteTodoItem
+    //   } = await import('./localStorage.js'));
+    // } else {
+    //   ({
+    //     getTodoList,
+    //     createTodoItem,
+    //     switchTodoItemDone,
+    //     deleteTodoItem
+    //   } = await import('./api.js'));
+    // }
+
+    // // Создание кнопки для переключения хранилища
+    // export function createButton(container) {
+    //   const button = document.createElement('button');
+    //   button.classList.add('btn', 'btn-primary');
+    //   button.textContent = currentStorage === 'local' ? 'Перейти на серверное хранилище' : 'Перейти на локальное хранилище';
+    //   button.addEventListener('click', toggleStorage);
+    //   container.appendChild(button);
+    //   return button;
+    // }
+
+
+  </script>
+  <title>TODO</title>
+</head>
+
+<body>
+  <div class="container mb-5">
+    <nav class="nav">
+      <a href="./index.html" class="nav-link">Мои дела</a>
+      <a href="./dad.html" class="nav-link">Дела папы</a>
+      <a href="./mom.html" class="nav-link">Дела мамы</a>
+    </nav>
+  </div>
+  <div id="button" class="container"></div>
+  <div id="todo-app" class="container"></div>
+</body>
+
+</html>
