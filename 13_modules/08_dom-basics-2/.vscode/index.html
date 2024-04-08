@@ -10,15 +10,15 @@
   <script type="module">
     import { createTodoApp, createButton } from './todo-app/view.js';
 
-    let apiModule = './todo-app/api.js';
-    let storageType = 'server';
+    let apiModule = './todo-app/localStorage.js';
+    let storageType = 'local';
 
     async function switchStorage() {
-      if (storageType === 'server') {
-        apiModule = './todo-app/api.js';
+      if (storageType === 'local') {
+        apiModule = './todo-app/localStorage.js';
         storageType = 'local';
       } else {
-        apiModule = './todo-app/localStorage.js';
+        apiModule = './todo-app/api.js';
         storageType = 'server';
       }
     }

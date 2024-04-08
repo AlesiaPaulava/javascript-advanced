@@ -45,11 +45,14 @@ export function switchTodoItemDone({ todoItem }) {
   }
 }
 
-export function deleteTodoItem({ todoItem }) {
-  const index = listArray.findIndex(item => item.id === todoItem.id);
-  if (index !== -1) {
-    listArray.splice(index, 1);
-    saveList(listArray, listName);
+export function deleteTodoItem({ element, todoItem }) {
+  if (confirm('Вы уверены?')) {
+    const index = listArray.findIndex(item => item.id === todoItem.id);
+    if (index !== -1) {
+      listArray.splice(index, 1);
+      saveList(listArray, listName);
+      element.remove();
+    }
   }
 }
 

@@ -1,4 +1,4 @@
-import * as storage from './storage.js'; // импортируем модуль для работы с хранилищем
+// import * as storage from './storage.js'; // импортируем модуль для работы с хранилищем
 //создаем и возврацаем заголовок приложения
 export function createAppTitle(title) {
   let appTitle = document.createElement('h2'); //создаём элемент h2
@@ -182,7 +182,7 @@ export function createButton(container, switchStorage) {
   button.style = 'margin-bottom: 25px';
 
   // Устанавливаем начальный текст кнопки
-  button.textContent = 'Перейти на локальное хранилище';
+  button.textContent = 'Перейти на серверное хранилище';
 
   // Добавляем обработчик события клика
   button.addEventListener('click', function () {
