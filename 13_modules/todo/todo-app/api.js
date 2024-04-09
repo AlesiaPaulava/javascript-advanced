@@ -5,7 +5,7 @@ export async function getTodoList(owner) {
 }
 
 //создание дела на стороне сервера
-export async function createTodoItem ({ owner, name }) {
+export async function createTodoItem({ owner, name }) {
   const response = await fetch('http://localhost:3000/api/todos', {
     method: 'POST',
     body: JSON.stringify({
@@ -33,7 +33,7 @@ export function switchTodoItemDone({ todoItem }) {
 
 //удаление дела
 export function deleteTodoItem({ element, todoItem }) {
-  if(!confirm('Вы уверены?')) {
+  if (!confirm('Вы уверены?')) {
     return;
   }
   element.remove();
