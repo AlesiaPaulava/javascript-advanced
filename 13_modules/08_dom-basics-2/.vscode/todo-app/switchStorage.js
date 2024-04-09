@@ -1,14 +1,14 @@
 import { createTodoApp, createButton } from "./view.js";
 
-export async function mainFunction() {
+export async function switchStorage(owner, title) {
   let localStorage = await import("./localStorage.js");
   const todo = document.getElementById("todo-app");
   const btnContainer = document.getElementById("button");
-  let owner = "my";
+
 
   let todoItemList = await localStorage.getTodoList(owner);
   createTodoApp(todo, {
-    title: "Мои дела",
+    title: title,
     owner,
     todoItemList,
     onCreateFormSubmit: localStorage.createTodoItem,
@@ -23,10 +23,9 @@ export async function mainFunction() {
       const serverStorage = await import("./api.js");
       button.textContent = "Перейти на локальное хранилище";
       todo.innerHTML = "";
-      let owner = "my";
       let todoItemList = await serverStorage.getTodoList(owner);
       createTodoApp(todo, {
-        title: "Мои дела",
+        title: title,
         owner,
         todoItemList,
         onCreateFormSubmit: serverStorage.createTodoItem,
@@ -39,7 +38,7 @@ export async function mainFunction() {
       todo.innerHTML = "";
       let todoItemList = localStorage.getTodoList(owner);
       createTodoApp(todo, {
-        title: "Мои дела",
+        title: title,
         owner,
         todoItemList,
         onCreateFormSubmit: localStorage.createTodoItem,

@@ -8,27 +8,8 @@
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
         crossorigin="anonymous">
         <script type="module">
-          import { createTodoApp, createButton } from './todo-app/view.js';
-    import {
-      getTodoList,
-      createTodoItem,
-      switchTodoItemDone,
-      deleteTodoItem
-    } from './todo-app/api.js';
-
-    (async () => {
-      const owner = 'mom';
-      const todoItemList = await getTodoList(owner);
-      createTodoApp(document.getElementById('todo-app'), {
-        title: 'Дела мамы',
-        owner,
-        todoItemList,
-        onCreateFormSubmit: createTodoItem,
-        onDoneClick: switchTodoItemDone,
-        onDeleteClick: deleteTodoItem,
-      });
-      createButton(document.getElementById('button'));
-    })();
+          import { switchStorage } from "./todo-app/switchStorage.js";
+          switchStorage('mom', 'Дела мамы');
         </script>
     <title>TODO</title>
   </head>
