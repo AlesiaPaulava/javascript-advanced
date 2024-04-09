@@ -1,4 +1,3 @@
-// import * as storage from './storage.js'; // импортируем модуль для работы с хранилищем
 //создаем и возврацаем заголовок приложения
 export function createAppTitle(title) {
   let appTitle = document.createElement('h2'); //создаём элемент h2
@@ -143,122 +142,13 @@ export async function createTodoApp(container, {
   });
 }
 
-// // Создание кнопки для переключения хранилища
-// export function createButton(container) {
-//   const button = document.createElement('button');
-//   button.classList.add('btn', 'btn-primary');
-//   button.textContent = storage.currentStorage === 'local' ? 'Перейти на серверное хранилище' : 'Перейти на локальное хранилище';
-//   button.addEventListener('click', storage.toggleStorage); // добавляем обработчик клика для переключения хранилища
-//   container.appendChild(button);
-//   return button;
-// }
-
-// export async function runTodoApp(title, owner) {
-//   loadLocal(title, owner);
-//   const container = document.querySelector('#button-container');
-//   let button = document.createElement('button');
-//   button.classList.add('btn', 'btn-primary');
-//   button.textContent = 'Перейти на серверное хранилище';
-//   button.dataset.from = 'local';
-//   button.addEventListener('click', () => {
-//     document.getElementById('todo-app').innerText = '';
-//     if (button.dataset.from === 'local') {
-//       button.dataset.from = 'api';
-//       button.textContent = 'Перейти на локальное хранилище';
-//       loadApi(title, owner);
-//     } else {
-//       button.dataset.from = 'local';
-//       button.textContent = 'Перейти на серверное хранилище';
-//       loadLocal(title, owner);
-//     }
-//   });
-//   container.append(button);
-// }
-// //создание кнопки
-export function createButton(container, switchStorage) {
-  // Создаем кнопку
+//создание кнопки
+export function createButton(container) {
   const button = document.createElement('button');
   button.classList.add('btn', 'btn-primary');
   button.style = 'margin-bottom: 25px';
-
-  // Устанавливаем начальный текст кнопки
   button.textContent = 'Перейти на серверное хранилище';
-
-  // Добавляем обработчик события клика
-  button.addEventListener('click', function () {
-    // Проверяем текущий текст кнопки и меняем его на противоположный
-    if (button.textContent === 'Перейти на локальное хранилище') {
-      button.textContent = 'Перейти на серверное хранилище';
-      switchStorage();
-    } else {
-      button.textContent = 'Перейти на локальное хранилище';
-      switchStorage();
-    }
-  });
-
   container.append(button);
-
   return button;
 }
-
-
-
-// //функция, которая создает ДОМэлемент с делом
-// export function createTodoItem(obj) {
-//   let item = document.createElement('li');
-//   //кнопки помещаем в элемент, который красиво покажет их в одной группе
-//   let buttonGroup = document.createElement('div'); //для красивого размещения кнопок
-//   let doneButton = document.createElement('button'); //кнопка, отметить дело как сделанное
-//   let deleteButton = document.createElement('button'); //кнопка, удалить дело из списка
-
-//   //устанавливаем стили для элементов списка, а так же для размещения кнопок
-//   //в его правой части с помощью flex
-//   item.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
-//   item.textContent = obj.name; //именно textContent, а не HTML т.к.могут быть спецсимволы внутри
-
-//   buttonGroup.classList.add('btn-group', 'btn-group-sm'); //добавляем класс для стилизации
-//   doneButton.classList.add('btn', 'btn-success');
-//   doneButton.textContent = 'Готово';
-//   deleteButton.classList.add('btn', 'btn-danger');
-//   deleteButton.textContent = 'Удалить';
-
-//   if (obj.done == true) item.classList.add('list-group-item-success');
-
-//   //добавляем обработчики на кнопки
-//   doneButton.addEventListener('click', function () {
-//     item.classList.toggle('list-group-item-success'); //добавляем или убираем класс бутстрап, который красит в зеленый
-
-//     for (const listItem of listArray) { //проходимся циклом по массиву дел
-//       if (listItem.id == obj.id) listItem.done = !listItem.done //если ID дела в массиве равен ID добавленного дела по которому кликнули, то done меняет на противоположное
-//     }
-//     //сохраняем в localStorage массив в виде строки
-//     saveList(listArray, listName);
-//   });
-
-//   deleteButton.addEventListener('click', function () {
-//     if (confirm('Вы уверены?')) { //вернет true если человек нажмет ДА
-//       item.remove(); //удалит элемент
-//       for (let i = 0; i < listArray.length; i++) { //проходимся по каждому объекту массива
-//         if (listArray[i].id == obj.id) listArray.splice(i, 1); //при нажатии на кнопку удалить, удаленное дело удаляется из массива
-//       }
-//       //сохраняем в localStorage массив в виде строки
-//       saveList(listArray, listName);
-//     }
-//   });
-
-//   //вкладываем кнопки в отдельный элемент, что бы они объединились в один блок
-//   buttonGroup.append(doneButton); //кнопку вкладываем в общий блок
-//   buttonGroup.append(deleteButton); //кнопку вкладываем в общий блок
-//   item.append(buttonGroup); //группу гнопок вкладываем в li
-
-//   //приложению нужен доступ к самому элементу и кнопкам, чтоюы обрабатывать события нажатия
-//   return {
-//     item,
-//     doneButton,
-//     deleteButton,
-//   };
-// }
-
-
-
 
